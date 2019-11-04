@@ -3,6 +3,8 @@ import './App.css';
 import {connect} from 'react-redux';
 import {ADD_REMINDE,REMOVE_REMINDER, REMOVE_ALLL} from './actions/index';
 import moment from 'moment';
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 class App extends React.Component {
   constructor() {
@@ -14,7 +16,7 @@ class App extends React.Component {
   }
   
 
-  handleChang = (e)=> {
+  handleTextChang = (e)=> {
     const name = e.target.name
     this.setState({
     [name]: e.target.value
@@ -48,6 +50,18 @@ class App extends React.Component {
               }
          </ul>
   }
+
+  // handleChange = date => {
+  //   this.setState({
+  //     date: date
+  //   });
+  // };
+  handleChange = date => {
+    this.setState({
+      date: date
+    })
+  };
+
   render() {
     console.log(this.props)
   return (
@@ -59,19 +73,30 @@ class App extends React.Component {
       </h2>  
       </div>
       <input
-      value= {this.state.text}
-       onChange= {this.handleChang}
+       value= {this.state.text}
+       onChange= {this.handleTextChang}
        name='text'
        className='form-control' type='text' placeholder='type the task here' />
-      <input
+      {/* <input
       onChange= {this.handleDAte}
       name= 'date'
-      className='form-control' type='datetime-local'  />
+      className='form-control' type='datetime-local'  /> */}
+
+      <DatePicker
+        className='form-control'
+        selected={this.state.date}
+        onChange={date => this.setState({date: date}, console.log('k',this.state.date))}
+        // onChange={this.handleDAte}
+        showTimeSelect
+        timeFormat="HH:mm"
+        timeCaption="time"
+        dateFormat="MMMM d, yyyy h:mm aa"
+          />
 
       <button
        onClick = {
          ()=>{ 
-          this.props.ADD_REMINDE(this.state.text, this.state.data)
+          this.props.ADD_REMINDE(this.state.text, this.state.date)
           this.setState({
             text: '',
             date : ''
