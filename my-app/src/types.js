@@ -1,2 +1,3 @@
 export const ADD_REMINDERTYPE = "AD_REMINDER";
 export const REMOVE_REMINDERTYPE = "REMOVE_REMINDER";
+export const REMOVE_ALL = "REMOVE_All";

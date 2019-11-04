@@ -1,8 +1,7 @@
 import React from 'react';
 import './App.css';
 import {connect} from 'react-redux';
-import {ADD_REMINDE} from './actions/index';
-import {REMOVE_REMINDER} from './actions/index';
+import {ADD_REMINDE,REMOVE_REMINDER, REMOVE_ALLL} from './actions/index';
 
 
 class App extends React.Component {
@@ -47,6 +46,13 @@ class App extends React.Component {
          </ul>
   }
 
+  clrarAll = ()=> {
+    this.setState({
+      text: '',
+      data : ''
+    })
+  }
+
   render() {
     console.log(this.props)
   return (
@@ -67,7 +73,13 @@ class App extends React.Component {
       className='form-control' type='datetime-local'  />
 
       <button
-       onClick = {()=> this.props.ADD_REMINDE(this.state.text, this.state.data)}
+       onClick = {
+         ()=>{ 
+           this.props.ADD_REMINDE(this.state.text, this.state.data)
+           this.clrarAll() 
+          }
+        }
+       
       className='btn btn-primary btn-block'>
         Add Task
       </button>
@@ -75,9 +87,9 @@ class App extends React.Component {
       {this.showRmainder()}
       
       <button
-      
+       onClick={this.props.REMOVE_ALLL}
        className='btn btn-primary btn-block'>
-        Cleare Task
+        Cleare All Task
       </button>
     </div>
   );
@@ -100,4 +112,4 @@ export default connect((data)=> {
   return {
     remainders: data
   }
-}, {ADD_REMINDE, REMOVE_REMINDER})(App);
+}, {ADD_REMINDE, REMOVE_REMINDER, REMOVE_ALLL})(App);

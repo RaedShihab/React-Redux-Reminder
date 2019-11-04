@@ -1,8 +1,8 @@
-import {ADD_REMINDERTYPE} from '../types';
+import {ADD_REMINDERTYPE, REMOVE_ALL} from '../types';
 import {REMOVE_REMINDERTYPE} from '../types';
 
 const reminder = (state = [], action)=> {
-    let reminders = null;
+    let reminders = [];
     if(action.type === ADD_REMINDERTYPE) {
         reminders = [...state, {text: action.text, date: action.date, id: Math.random()}]
         console.log('from reducer', reminders)
@@ -15,16 +15,9 @@ const reminder = (state = [], action)=> {
            console.log('from reducer',reminders)
            return reminders
     }
-
-    // else if(action.type === REMOVE_REMINDERTYPE) {
-    //    reminders = state.map(reminder => {
-    //        if(reminder.id !== action.id) {
-    //            return reminder
-    //        }
-    //    })
-    //    console.log('dsds',reminders)
-    //    return reminders
-    // }
+    else if(action.type === REMOVE_ALL) {
+        return reminders
+    }
     else {
         return state
     }
