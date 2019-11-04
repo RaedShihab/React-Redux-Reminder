@@ -2,14 +2,17 @@ import React from 'react';
 import './App.css';
 import {connect} from 'react-redux';
 import {ADD_REMINDE,REMOVE_REMINDER, REMOVE_ALLL} from './actions/index';
-
+import moment from 'moment';
 
 class App extends React.Component {
-
-  state = {
-    text: '',
-    date: new Date
+  constructor() {
+    super()
+    this.state = {
+      text: '',
+      date: new Date
+    }
   }
+  
 
   handleChang = (e)=> {
     const name = e.target.name
@@ -32,7 +35,7 @@ class App extends React.Component {
                 this.props.remainders.map(reminder => {
                  return <li key={reminder.id}>
                           <div>{reminder.text}</div>
-                          <div>{reminder.date}</div>
+                          <div>{moment(reminder.date).fromNow()}</div>
                           <div>
                               <button 
                               onClick = {()=> this.props.REMOVE_REMINDER(reminder.id)}  
@@ -45,14 +48,6 @@ class App extends React.Component {
               }
          </ul>
   }
-
-  clrarAll = ()=> {
-    this.setState({
-      text: '',
-      data : ''
-    })
-  }
-
   render() {
     console.log(this.props)
   return (
@@ -64,6 +59,7 @@ class App extends React.Component {
       </h2>  
       </div>
       <input
+      value= {this.state.text}
        onChange= {this.handleChang}
        name='text'
        className='form-control' type='text' placeholder='type the task here' />
@@ -75,8 +71,11 @@ class App extends React.Component {
       <button
        onClick = {
          ()=>{ 
-           this.props.ADD_REMINDE(this.state.text, this.state.data)
-           this.clrarAll() 
+          this.props.ADD_REMINDE(this.state.text, this.state.data)
+          this.setState({
+            text: '',
+            date : ''
+          })
           }
         }
        
