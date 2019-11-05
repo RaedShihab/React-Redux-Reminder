@@ -65,7 +65,7 @@ class App extends React.Component {
   render() {
     console.log(this.props)
   return (
-    <div>
+    <div className='App'>
       <img src='' />
       <div>
       <h2>
@@ -112,7 +112,7 @@ class App extends React.Component {
       
       <button
        onClick={this.props.REMOVE_ALLL}
-       className='btn btn-primary btn-block'>
+       className='btn btn-block btn-danger'>
         Cleare All Task
       </button>
     </div>
