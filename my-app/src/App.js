@@ -5,6 +5,7 @@ import {ADD_REMINDE,REMOVE_REMINDER, REMOVE_ALLL} from './actions/index';
 import moment from 'moment';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import logo from './imgs/1.png'
 
 class App extends React.Component {
   constructor() {
@@ -32,24 +33,21 @@ class App extends React.Component {
   }
 
   showRmainder = ()=> {
-   return <ul>
-              {
+   return (
                 this.props.remainders.map(reminder => {
                  return <li key={reminder.id}>
-                          <div>{reminder.text}</div>
-                          <div>{moment(reminder.date).fromNow()}</div>
-                          <div>
-                              <button 
+                          {reminder.text} {':'+' '} 
+                          {moment(reminder.date).fromNow()}
+                              <div className='circleeebtn btn btn-danger'
                               onClick = {()=> this.props.REMOVE_REMINDER(reminder.id)}  
                               >
                                 X
-                              </button>
-                            </div>
+                              </div>
                         </li>
-                })
-              }
-         </ul>
-  }
+                     
+  })
+   )
+}
 
   // handleChange = date => {
   //   this.setState({
@@ -66,10 +64,10 @@ class App extends React.Component {
     console.log(this.props)
   return (
     <div className='App'>
-      <img src='' />
-      <div>
+      <img src={logo} />
+      <div className='reminder-titel'>
       <h2>
-     Organize your day
+     Set Your Reminder
       </h2>  
       </div>
       <input
