@@ -28,6 +28,7 @@ input , button {
   border-radius: 50%;
   /* right: 15px; */
   margin: -6px auto auto auto;
+  cursor: pointer;
   /* margin-top: -5px ; */
 }
 

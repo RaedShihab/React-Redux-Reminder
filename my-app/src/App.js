@@ -11,7 +11,7 @@ class App extends React.Component {
   constructor() {
     super()
     this.state = {
-      text: '',
+      text: ' ',
       date: new Date
     }
   }
@@ -37,7 +37,7 @@ class App extends React.Component {
                 this.props.remainders.map(reminder => {
                  return <li key={reminder.id} className='list-group-item listItems'>
                           {reminder.text} {':'+' '} 
-                          {moment(reminder.date).fromNow()}
+                          {moment(reminder.date).fromNow() === 'Invalid date' ? alert('Enter Valid Date')  : console.log('m,nm,')}
                               <div className='circleeebtn btn btn-danger'
                               onClick = {()=> this.props.REMOVE_REMINDER(reminder.id)}  
                               >
@@ -94,11 +94,14 @@ class App extends React.Component {
       <button
        onClick = {
          ()=>{ 
-          this.props.ADD_REMINDE(this.state.text, this.state.date)
+          if(this.state.text === " ") {alert('Enter All Information')}
+          else {
+            this.props.ADD_REMINDE(this.state.text, this.state.date)
           this.setState({
             text: '',
             date : ''
           })
+          }
           }
         }
        
