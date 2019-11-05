@@ -35,7 +35,7 @@ class App extends React.Component {
   showRmainder = ()=> {
    return (
                 this.props.remainders.map(reminder => {
-                 return <li key={reminder.id}>
+                 return <li key={reminder.id} className='list-group-item listItems'>
                           {reminder.text} {':'+' '} 
                           {moment(reminder.date).fromNow()}
                               <div className='circleeebtn btn btn-danger'

@@ -23,18 +23,12 @@ input , button {
 }
 
 .circleeebtn {
+  /* position: absolute; */
   float: right;
-  position: absolute;
-  top: 17px;
-  right: 15px;
-  background: orangered;
   border-radius: 50%;
-  cursor: pointer;
-  width: 40px;
-  height: 40px;
-  text-align: center;
-  line-height: 40px;
-  color: white;
+  /* right: 15px; */
+  margin: -6px auto auto auto;
+  /* margin-top: -5px ; */
 }
 
 .react-datepicker-wrapper,
@@ -46,4 +40,9 @@ input , button {
   text-align: center;
   font-weight: bold;
   text-decoration: underline;
+}
+
+.listItems {
+  margin: 10px auto;
+  color: black;
 }
