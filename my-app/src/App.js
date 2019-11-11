@@ -22,14 +22,12 @@ class App extends React.Component {
     this.setState({
     [name]: e.target.value
     })
-    console.log(this.state[name])
   }
   
   handleDAte = (e)=> {
     this.setState({
       data: e.target.value
     })
-    console.log(this.state.date)
   }
 
   showRmainder = ()=> {
@@ -37,7 +35,7 @@ class App extends React.Component {
                 this.props.remainders.map(reminder => {
                  return <li key={reminder.id} className='list-group-item listItems'>
                           {reminder.text} {':'+' '} 
-                          {moment(reminder.date).fromNow() === 'Invalid date' ? alert('Enter Valid Date')  : console.log('m,nm,')}
+                          {moment(reminder.date).fromNow()}
                               <div className='circleeebtn btn btn-danger'
                               onClick = {()=> this.props.REMOVE_REMINDER(reminder.id)}  
                               >
@@ -49,11 +47,6 @@ class App extends React.Component {
    )
 }
 
-  // handleChange = date => {
-  //   this.setState({
-  //     date: date
-  //   });
-  // };
   handleChange = date => {
     this.setState({
       date: date
@@ -61,7 +54,6 @@ class App extends React.Component {
   };
 
   render() {
-    console.log(this.props)
   return (
     <div className='App'>
       <img src={logo} />
@@ -94,7 +86,7 @@ class App extends React.Component {
       <button
        onClick = {
          ()=>{ 
-          if(this.state.text === " ") {alert('Enter All Information')}
+          if(this.state.text === " " || !this.state.date) {alert('Please enter a valid information')}
           else {
             this.props.ADD_REMINDE(this.state.text, this.state.date)
           this.setState({
@@ -120,18 +112,6 @@ class App extends React.Component {
   );
 }
 }
-
-// const mapDispatchToProps = (dispatch)=> {
-//   return {
-//     ADD_REMINDERMethod: ()=> dispatch(ADD_REMINDER())
-//   }
-// }
-
-// const mapstatetoProps = (data)=> {
-//   return {
-//     remainders: data
-//   }
-// }
 
 export default connect((data)=> {
   return {
