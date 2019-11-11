@@ -19,7 +19,7 @@ const reminder = (state = [], action)=> {
            return reminders
     }
     else if(action.type === REMOVE_ALL) {
-        // bake_cookie('reminders', reminders)
+        bake_cookie('reminders', reminders)
         return reminders
     }
     else {
